@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var su = prompt("몇 까지 3의 배수");
+        var i;
+        var count = 0;
+
+        for(i = 1; i <= su; i++)
+        {
+            if(i % 3 == 0)
+            {
+                document.write(i+",");
+                count++;
+            }
+        }
+        document.write("<br>");
+        document.write("개수" + count);
+        
+    </script>
+</body>
+</html>
