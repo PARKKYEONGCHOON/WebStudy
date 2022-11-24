@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h2>상품목록</h2>
+    <ul id="list"></ul>
+    <script>
+        const product = [
+        {id: '01', name : '1'},
+        {id: '02', name : '2'},
+        {id: '03', name : '3'}
+        ]
+
+        const El = document.getElementById('list');
+        product
+        .map(product =>{
+            const newEl = document.createElement('li');
+            newEl.id = product.id;
+            newEl.innerText = product.name;
+            return newEl;
+        })
+        .forEach(productEl =>{
+            El.appendChild(productEl);
+        });
+
+        setTimeout(()=>{
+            const seEL = document.querySelector('ul li:nth-child(2)');
+            seEL.remove();
+        },1000);
+
+        El.after("<div>잘못된 사용</div>");
+        El.insertAdjacentElement('afterend',"<p>추가된 문단</p>");
+    </script>
+</body>
+</html>
