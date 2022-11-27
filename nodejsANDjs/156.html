@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="./156.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="file-box" class="dot-box">
+        이미지 파일을 선택한 후 올려라
+    </div>
+    <output id="result"></output>
+    
+    <script>
+        var dropZone = document.getElementById('file-box');
+        dropZone.addEventListener('dragover', e => {
+           e.stopPropagation();
+           e.preventDefault(); 
+        });
+
+        dropZone.addEventListener('drop', e => {
+            e.stopPropagation();
+            e.preventDefault();
+            const files = e.dataTransfer.files;
+            Array.from(files)
+                .filter(file => file.type.match('image.*'))
+                .forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const imageEL = document.createElement('img');
+                        imageEL.src = e.target.result;
+                        imageEL.title = file.name;
+                        document.getElementById('result').appendChild(imageEL);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+        });
+    </script>
+
+</body>
+</html>

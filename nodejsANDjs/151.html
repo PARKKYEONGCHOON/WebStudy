@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="order">
+        <fieldset name="userinfo">
+            <legend>주문자 정보</legend>
+            이름 : <input type="text" name="name">
+            전화번호 : <input type="tel" name="tel">
+        </fieldset>
+
+        <fieldset name="productinfo">
+            <legend>상품 정보</legend>
+            상품명 : <input type="text" name="productname">
+            색상 :
+            <select name="color">
+                <option value="black">검은색</option>
+                <option value="yellow">노란색</option>
+            </select>
+        </fieldset>
+
+        <button id="btn1" type="button">처리</button>
+        <button type="submit">제출</button>
+
+    </form>
+
+<script>
+    const orderform = document.forms.order,
+        userField = orderform.elements.userinfo,
+        productField = orderform.elements.productInfo;
+
+    document.getElementById('btn1')
+        .addEventListener('click', e =>{
+           const {name, tel} = userField.elements;
+           console.log(`${name.value} 가 ${tel.value} 로 주문`); 
+        });
+
+    orderform.addEventListener('submit', e =>{
+        e.preventDefault();
+        const {productName, color} = productField.elements;
+        console.log(`${productName.value} 상품 ${color.value} 색 주문`);
+    });
+
+    orderform.method = 'GET';
+    orderform.submit();
+
+</script>
+
+</body>
+</html>

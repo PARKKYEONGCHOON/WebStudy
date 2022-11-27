@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Cart {
+            constructor(){
+                this.key = "app-cart";
+                const itemString =localStorage.getItem(this.key);
+                if(itemString){
+                    this.items = JSON.parse(itemString);
+                }
+                else
+                {
+                    this.items = [];
+                }
+            }
+
+            addItem(item){
+                this.items.push(item);
+                const itemString = JSON.stringify(this.items);
+                localStorage.setItem(this.key, itemString);
+                this.items = item;
+            }
+        }
+
+        const cart = new Cart();
+        console.table(cart.items);
+        cart.addItem({name : 'A노트북', price : 20000});
+
+    </script>
+</body>
+</html>
